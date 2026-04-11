@@ -29,4 +29,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Définir rélation avec Article !hasMany!
+    public function article()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
