@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 
@@ -20,5 +21,8 @@ Route::middleware('auth')->group(function () {
 
 // Modifier la route de base de Laravel pour qu'elle appelle notre méthode index
 Route::get('/', [HomepageController::class, 'index']);
+
+Route::get('/articles', [ArticleController::class, 'index'])->name('front.articles.index');
+Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('front.articles.show');
 
 require __DIR__.'/auth.php';

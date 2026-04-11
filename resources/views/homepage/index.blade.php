@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog</title>
 </head>
 <body>
     <x-guest-layout>
@@ -11,8 +11,8 @@
         <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
             @foreach ($articles as $article)
                 <li>
-                    <a class="flex bg-white rounded-md  shadow-md p-5 w-full hover:shadow-lg hover:scale-105 transition"
-                        href="#">
+                    <a class="flex bg-white rounded-md shadow-md p-5 w-full hover:shadow-lg hover:scale-105 transition"
+                        href="{{ route('front.articles.show', $article) }}">
                         {{ $article->title }}
                     </a>
                 </li>
