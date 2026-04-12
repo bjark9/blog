@@ -11,9 +11,17 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+
+                    <!--  Lien à ajouter -->
+                    <!-- La méthode routeIs permet de vérifier si la route actuelle correspond à un pattern. Dans notre cas, nous voulons vérifier si la route actuelle correspond à la route articles.index ou à la route articles.create, articles.edit ou articles.destroy.
+                    Nous utilisons le caractère * pour indiquer que la route peut être suivi d'un identifiant quelconque 
+                    Si la route actuelle correspond à l'un de ces patterns, le lien recevra la classe active.-->
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
+                        {{ __('Articles') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -69,6 +77,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+        
+            <!--  Lien à ajouter -->
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.*')">
+                {{ __('Articles') }}
             </x-responsive-nav-link>
         </div>
 

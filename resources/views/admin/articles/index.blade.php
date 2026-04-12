@@ -1,3 +1,4 @@
+<!-- Inclusion of the nav-layout happens inside the app-layout file -->
 <x-app-layout>
 
     <x-slot name="header">
