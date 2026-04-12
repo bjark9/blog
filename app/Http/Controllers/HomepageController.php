@@ -14,4 +14,9 @@ class HomepageController extends Controller
 
         return view('homepage.index', ['articles'=>$articles]);
     }
+
+    public function aPropos()
+    {
+        return view('homepage.a_propos');
+    }
 }

@@ -1,0 +1,10 @@
+<x-guest-layout>
+    <h1>Présentation du site</h1>
+    <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque libero non sapien rhoncus, ac tempus tortor sodales. Nam ac tempus eros. Curabitur at accumsan orci. In mauris leo, vulputate id euismod et, sodales ut elit. Vestibulum porttitor vel ex bibendum imperdiet. Proin eget tincidunt lectus, vel interdum risus. Suspendisse sagittis vestibulum ligula, et auctor elit dictum vitae. Maecenas venenatis imperdiet sem, ac euismod magna cursus nec. Nam dui nisi, rutrum eu porta non, euismod vel eros. Nam auctor sem id ornare mattis.
+
+Quisque accumsan efficitur fringilla. Duis blandit diam id lacus aliquet aliquam. Donec et tempus eros, ut tempus nisi. Praesent iaculis nulla ac massa cursus, a sollicitudin urna luctus. Nulla luctus justo quam, sit amet lacinia dui convallis sit amet. In commodo, lacus vel auctor egestas, nibh ligula porttitor metus, eget cursus nisl nunc dapibus metus. Etiam libero mauris, rhoncus a lorem sit amet, elementum egestas turpis. Donec tristique vel mauris gravida malesuada. Pellentesque tincidunt sem eget gravida efficitur. Praesent euismod arcu vel hendrerit tristique. Aenean vitae dui augue. Nullam sed nisi rutrum, convallis mauris a, auctor urna. Nam nec mattis risus.
+
+Curabitur laoreet risus vitae efficitur laoreet. Pellentesque sit amet pretium dui, sed ullamcorper augue. In sed erat ullamcorper nisl vulputate interdum. Donec cursus euismod dictum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi dignissim at purus ut porttitor. Nam arcu libero, tincidunt sed luctus pellentesque, faucibus sed nibh. Vestibulum et egestas quam. Vivamus iaculis quam et massa scelerisque posuere. Donec volutpat lacus justo, ut blandit purus laoreet a. Etiam posuere ullamcorper rhoncus. 
+    </p>
+</x-guest-layout>

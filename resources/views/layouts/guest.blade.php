@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased">
+<body class="font-sans text-blue-900 antialiased">
     <div class="min-h-screen flex flex-col pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
         <div class="container mx-auto flex flex-col space-y-10">
             <nav class="flex justify-between items-center py-2">
@@ -28,14 +28,22 @@
                         <span>Mon blog</span>
                     </a>
                 </div>
+                <div>
+                    <a href="{{ route('homepage.a_propos') }}">À Propos</a>
+                </div>
                 <div class="flex items-center space-x-4 justify-end">
-                    <a class="font-bold hover:text-emerald-600 transition" href="/">Articles</a>
+                    <a class="font-bold hover:text-emerald-600 transition" href="{{ route('front.articles.index') }}">Articles</a>
                 </div>
             </nav>
-
             <main>
                 {{ $slot }}
             </main>
+            <footer>
+            <div class="mb-5 flex justify-around text-emerald-500">
+                <a href="https://www.instagram.com/">Instagram</a>
+                <a href="https://www.facebook.com/">Facebook</a>
+            </div>
+            </footer>
         </div>
     </div>
 </body>

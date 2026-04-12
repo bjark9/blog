@@ -15,10 +15,12 @@
                         href="{{ route('front.articles.show', $article) }}">
                         {{ $article->title }}
                     </a>
+                    <img src="{{ Storage::url($article->img_path) }}" alt="illustration de l'article">
                 </li>
             @endforeach
         </ul>
-
+<!--$articles est une instance de LengthAwarePaginator, retournée quand tu utilises .paginate() dans ton contrôleur (ex: Article::paginate(10))
+->links() génère le HTML des boutons de navigation (Précédent / Numéros de pages / Suivant)-->
         <div class="mt-8">
             {{ $articles->links() }}
         </div>

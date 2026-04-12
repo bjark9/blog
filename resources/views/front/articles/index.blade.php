@@ -4,6 +4,7 @@
         @foreach ($articles as $article)
             <li>
                 <x-article-card :article="$article" />
+                <img src="{{ Storage::url($article->img_path) }}" alt="illustration de l'article">
             </li>
         @endforeach
     </ul>
