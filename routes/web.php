@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,5 +32,10 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('front.articl
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('front.articles.show');
 
 Route::get('/a-propos', [HomepageController::class, 'aPropos'])->name('homepage.a_propos');
+
+// Ajout de middleware 'auth' pour protèger l'accès a ces routes ainsi qu'un préfixe admin pour les routes de l'administration.
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::resource('articles', AdminArticleController::class);
+});
 
 require __DIR__.'/auth.php';

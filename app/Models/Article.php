@@ -15,4 +15,12 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // Calcule le temps écoulé depuis la date de publication
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
 }
