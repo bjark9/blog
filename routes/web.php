@@ -38,4 +38,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('articles', AdminArticleController::class);
 });
 
+// Gestion du profil utilisateur
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // On ajoute la route pour la modification de l'avatar
+    Route::patch('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+});
+
 require __DIR__.'/auth.php';
