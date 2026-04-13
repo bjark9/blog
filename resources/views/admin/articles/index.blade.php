@@ -1,4 +1,3 @@
-<!-- Inclusion of the nav-layout happens inside the app-layout file -->
 <x-app-layout>
 
     <x-slot name="header">
@@ -18,7 +17,8 @@
 
                         <div class="flex  items-center justify-center space-x-8">
                             <a href="{{ route('articles.create') }}"
-                                class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition">Ajouter un
+                                class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition">Ajouter
+                                un
                                 article</a>
                         </div>
                     </div>
@@ -42,18 +42,16 @@
                                         <td class="border px-4 py-2">
                                             {{ $article->user->name }}</td>
                                         <td class="border px-4 py-2">
-                                            {{ $article->published_at?->diffForHumans() }}</td>
+                                            {{ $article->published_at?->diffForHumans() ?? 'Pas de date' }}</td>
                                         <td class="border px-4 py-2">
                                             {{ $article->updated_at->diffForHumans() }}</td>
                                         <td class="border px-4 py-2 space-x-4">
                                             <a href="{{ route('articles.edit', $article->id) }}"
                                                 class="text-blue-400">Edit</a>
-                                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST"
-                                                class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-400">Delete</button>
-                                            </form>
+
+                                            <button x-data="{ id: {{ $article->id }} }"
+                                                x-on:click.prevent="window.selected = id; $dispatch('open-modal', 'confirm-article-deletion');"
+                                                type="submit" class="text-red-400">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -67,6 +65,29 @@
                 </div>
             </div>
         </div>
-    </div>
+        <x-modal name="confirm-article-deletion" focusable>
+            <form method="post" onsubmit="event.target.action= '/admin/articles/' + window.selected" class="p-6">
+                @csrf
+                @method('DELETE')
 
+                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                    Êtes-vous sûr de vouloir supprimer cet article ?
+                </h2>
+
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    Cette action est irréversible. Toutes les données seront supprimées.
+                </p>
+
+                <div class="mt-6 flex justify-end">
+                    <x-secondary-button x-on:click="$dispatch('close')">
+                        Annuler
+                    </x-secondary-button>
+
+                    <x-danger-button class="ml-3" type="submit">
+                        Supprimer
+                    </x-danger-button>
+                </div>
+            </form>
+        </x-modal>
+    </div>
 </x-app-layout>
