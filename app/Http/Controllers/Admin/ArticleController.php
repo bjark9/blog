@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleCreateRequest;
+use App\Http\Requests\ArticleUpdateRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // ?
@@ -39,11 +40,23 @@ class ArticleController extends Controller
      */
     public function store(ArticleCreateRequest $request)
     {
+        // On crée un nouvel article
         $article = Article::make();
+
+        // On ajoute les propriétés de l'article
         $article->title = $request->validated()['title'];
         $article->body = $request->validated()['body'];
         $article->published_at = $request->validated()['published_at'];
         $article->user_id = Auth::id();
+
+
+        // Si il y a une image, on la sauvegarde
+        if ($request->hasFile('img')) {
+            $path = $request->file('img')->store('articles', 'public');
+            $article->img_path = $path;
+        }
+
+        // On sauvegarde l'article en base de données
         $article->save();
 
         return redirect()->route('articles.index');
@@ -69,11 +82,20 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleUpdateRequest $request, Article $article)
     {
+        // On modifies les propriétés de l'article
         $article->title = $request->validated()['title'];
         $article->body = $request->validated()['body'];
         $article->published_at = $request->validated()['published_at'];
+
+        // Si il y a une image, on la sauvegarde
+        if ($request->hasFile('img')) {
+            $path = $request->file('img')->store('articles', 'public');
+            $article->img_path = $path;
+        }
+
+        // On sauvegarde les modifications en base de données
         $article->save();
 
         return redirect()->back();

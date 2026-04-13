@@ -22,13 +22,13 @@ class ArticleCreateRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'title' => 'required|string|unique:articles,title|max:255'.$this->route('article')->id, 
-            // Nous avons ajouté la règle unique:articles,title,{$id} pour vérifier que le titre est unique dans la table articles sauf pour l'article en cours de modification. Pour récupérer l'identifiant de l'article en cours de modification, nous utilisons la méthode route() de la Form Request. Cette méthode permet de récupérer les paramètres de la route.
-            'published_at'=>'nullable|date',
-            'body'=>'required|max:1000',
+            'title' => 'required|unique:articles|max:255',
+            'published_at' => 'nullable|date',
+            'img' => 'nullable|image|max:2048',
+            'body' => 'required|max:10000',
         ];
     }
 }
