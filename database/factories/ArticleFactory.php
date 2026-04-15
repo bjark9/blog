@@ -4,10 +4,12 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str; 
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Article>
@@ -36,7 +38,10 @@ class ArticleFactory extends Factory
                 return $path; // Retourne le chemin qui sera stocké dans la bdd
             },
             'published_at' => fake()->dateTimeBetween('-2 months', '+ 1 month'),
-            'user_id' => User::get()->random()->id,
+            // pour qu’il n’y ait que des articles créés par des auteurs :
+            'user_id' => User::query()->whereHas('role', function (Builder $query) {
+                $query->where('name', Role::AUTHOR);
+            })->get()->random()->id,
         ];
     }
 }
