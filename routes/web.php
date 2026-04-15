@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
@@ -30,6 +31,15 @@ Route::get('/', [HomepageController::class, 'index']);
 // return redirect('/');
 Route::get('/articles', [ArticleController::class, 'index'])->name('front.articles.index');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('front.articles.show');
+
+// 
+Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
+    // Gestion des articles (création, modification, suppression)
+    Route::resource('/articles', AdminArticleController::class);
+
+    // Gestion des utilisateurs (Détails et changement de rôle)
+    Route::resource('/users', UserController::class);
+});
 
 Route::get('/a-propos', [HomepageController::class, 'aPropos'])->name('homepage.a_propos');
 
