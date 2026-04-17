@@ -21,8 +21,10 @@
         </ul>
 <!--$articles est une instance de LengthAwarePaginator, retournée quand tu utilises .paginate() dans ton contrôleur (ex: Article::paginate(10))
 ->links() génère le HTML des boutons de navigation (Précédent / Numéros de pages / Suivant)-->
-        <div class="mt-8">
-            {{ $articles->links() }}
+        <div class="mt-8 flex items-center justify-center">
+            <a href="{{ route('front.articles.index') }}" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow">
+                Tous les articles
+            </a>
         </div>
     </x-guest-layout>
 </body>

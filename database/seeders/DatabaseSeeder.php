@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             UsersTableSeeder::class,
             ArticlesTableSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }

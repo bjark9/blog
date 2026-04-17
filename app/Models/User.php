@@ -36,6 +36,12 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
     }
 
+    // Rélation entre User et Comment
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);

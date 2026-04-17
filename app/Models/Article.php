@@ -16,6 +16,12 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Définir la relation entre Article et Comment
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     // Calcule le temps écoulé depuis la date de publication
     protected function casts(): array
     {

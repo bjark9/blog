@@ -9,10 +9,17 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
-        $articles = Article::paginate(12);
+        $articles = Article::query()
+            ->where('published_at', '<', now())
+            ->withCount('comments')
+            ->orderByDesc('published_at')
+            ->take(4)
+            ->get()
+        ;
 
-        return view('homepage.index', ['articles'=>$articles]);
+        return view('homepage.index', [
+            'articles' => $articles,
+        ]);
     }
 
     public function aPropos()
