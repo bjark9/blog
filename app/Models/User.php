@@ -31,7 +31,7 @@ class User extends Authenticatable
     }
 
     // Définir rélation avec Article !hasMany!
-    public function article()
+    public function articles()
     {
         return $this->hasMany(Article::class);
     }

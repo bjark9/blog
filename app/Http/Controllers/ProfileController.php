@@ -8,9 +8,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
+    /**
+     * Affiche les informations sur l'utilisateur
+     */
+    public function show(User $user): View
+    {
+        // Les articles publiés par l'utilisateur
+        $articles = $user
+            ->articles()
+            ->where('published_at', '<', now())
+            ->withCount('comments')
+            ->orderByDesc('published_at')
+            ->get()
+        ;
+
+        // Les commentaires de l'utilisateur triés par date de création
+        $comments = $user
+            ->comments()
+            ->orderByDesc('created_at')
+            ->get()
+        ;
+
+        // On renvoie la vue avec les données
+        return view('profile.show', [
+            'user' => $user,
+            'articles' => $articles,
+            'comments' => $comments,
+        ]);
+    }
+    
     /**
      * Display the user's profile form.
      */
